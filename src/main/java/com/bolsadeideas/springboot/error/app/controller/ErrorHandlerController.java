@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.bolsadeideas.springboot.error.app.erros.UsuarioNoEncontradoException;
+
 @ControllerAdvice
 public class ErrorHandlerController {
 	@ExceptionHandler(ArithmeticException.class)
@@ -28,9 +30,9 @@ public class ErrorHandlerController {
 		return "error/generica";
 	}
 	
-	@ExceptionHandler(NullPointerException.class)
-	public String numberFormatError(NullPointerException ex, Model model) {
-		model.addAttribute("error", "Error de NullPointerException");
+	@ExceptionHandler(UsuarioNoEncontradoException.class)
+	public String numberFormatError(UsuarioNoEncontradoException ex, Model model) {
+		model.addAttribute("error", "Error de UsuarioNoEncontradoException");
 		model.addAttribute("message", ex.getMessage());
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestap", new Date());
