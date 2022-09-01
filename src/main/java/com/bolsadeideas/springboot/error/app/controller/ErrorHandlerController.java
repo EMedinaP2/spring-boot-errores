@@ -16,7 +16,25 @@ public class ErrorHandlerController {
 		model.addAttribute("message", ex.getMessage());
 		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
 		model.addAttribute("timestap", new Date());
-		return "error/aritmetica";
+		return "error/generica";
+	}
+	
+	@ExceptionHandler(NumberFormatException.class)
+	public String numberFormatError(NumberFormatException ex, Model model) {
+		model.addAttribute("error", "Error de formato");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestap", new Date());
+		return "error/generica";
+	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public String numberFormatError(NullPointerException ex, Model model) {
+		model.addAttribute("error", "Error de NullPointerException");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestap", new Date());
+		return "error/generica";
 	}
 	
 	
